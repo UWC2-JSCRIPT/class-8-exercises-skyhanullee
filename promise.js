@@ -12,3 +12,28 @@ myPromise
     console.log(number);
   });
 
+
+// Promise using Math.random() for homework assignment
+let mathPromise = new Promise( (resolve, reject) => {
+  setTimeout(() => {
+    let randomNumber = Math.random();
+    if(randomNumber > 0.5) {
+      console.log(randomNumber);
+      resolve('success');
+    }
+    else if(randomNumber <= 0.5) {
+      console.log(randomNumber);
+      reject('fail');
+    }
+  }, 1000);
+});
+
+mathPromise.then( (message) => {
+  console.log(message);
+  console.log('complete');
+});
+
+mathPromise.catch( (message) => {
+  console.log(message);
+  console.log('complete');
+});
