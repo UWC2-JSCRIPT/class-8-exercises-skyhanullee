@@ -4,7 +4,8 @@ const API_KEY = '6SkznYbjb3It1qUc8iHhcNgfFyG2zoEq';
 
 const BASE_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
-const url = `${BASE_URL}?q=tech&api-key=${API_KEY}`;
+// changed to car after q= to change the search topic
+const url = `${BASE_URL}?q=car&api-key=${API_KEY}`;
 
 fetch(url)
   .then(function(data) {
@@ -22,5 +23,17 @@ fetch(url)
     if (article.multimedia.length > 0) {
       const imgUrl = `https://www.nytimes.com/${article.multimedia[0].url}`;
       document.getElementById('article-img').src = imgUrl;
+      console.log(article.multimedia);
+
+      // added article link to href
+      document.getElementById('article-link').href = article.web_url;
+      console.log(imgUrl);
+
+      // create new author element and append to body
+      const authorElement = document.createElement('p');
+      const authorText = document.createTextNode(article.byline.original);
+      authorElement.appendChild(authorText);
+      document.getElementsByClassName('container')[0].appendChild(authorElement);
+      console.log(article.byline.original);
     }
   });
